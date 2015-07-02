@@ -1,8 +1,7 @@
 <table border ="1">
 %for row in rows:
 	<tr>
-	%for col in row:
-		<td>{{col}}</td>
+	<td>{{row}}</td>
 	%end
 	</tr>
 %end
