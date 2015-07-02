@@ -1,8 +1,6 @@
 <table border ="1">
-%for row in rows:
-	<tr>
-	<td>{{row}}</td>
-	%end
+<tr> 
+	<td>node{{str(no)}}</td>
+	<td>{{location}}</td>
 	</tr>
-%end
 </table>	
