@@ -28,10 +28,12 @@ def index(no):
 
 
 
-
+#Show nodes
 @route('/shownodes')	
 def shownodes():	
 	output = template('shownodes.tpl',nodeNameAndLoc=nodeNameAndLoc)
 	return output
-run(host='localhost')
+
+
+run(host='localhost') #Make sure this is last or else it won't load the pages after it
 
