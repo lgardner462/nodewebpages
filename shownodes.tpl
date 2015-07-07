@@ -1,9 +1,7 @@
 <table border="1">
-%for row in nodeNameAndLoc:
+%for row in nodeNames[2:]:
   <tr>
-  %for col in row:
-    <td><a href="http://localhost:8080/shownode/{{row[0]}}">{{col}}</a></td>
-  %end
+  <td><a href="http://localhost:8080/{{row}}">{{row}}</a></td>
   </tr>
 %end
 </table>
