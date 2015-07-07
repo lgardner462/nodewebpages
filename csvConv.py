@@ -6,7 +6,8 @@ import sys
 import csv
 
 #Open CSV file
-reader = csv.reader(open(sys.argv[1],'rU'))
+reader = csv.reader(open(sys.argv[1],'rU'),skipinitialspace = True)
+
 reader.next()
 reader.next()
 #Initialize Lists
