@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # CSV -> HTML
 
-from bottle import route, run, template
+from bottle import route, run, template, static_file
 import sys
 import csv
 
@@ -30,47 +30,56 @@ nameMacZipped = dict(zip(nodeNames,nodeMac))
 nameCSVZipped = dict(zip(nodeNames,csvFull))	
 	
 #route to node+<no> wildcard
-@route('/rack/node<no>')
-def index(no):
-	location=nameLocZipped['node'+str(no)] #Dictionary key gets node+<no>, location gets nameLocZipped[] value
-	output = template('how I display a node', no=no,location=location) #convert to html table	
-	return output
+#@route('/rack/node<no>')
+#def index(no):
+#	location=nameLocZipped['node'+str(no)] #Dictionary key gets node+<no>, location gets nameLocZipped[] value
+#	output = template('how I display a node', no=no,location=location) #convert to html table	
+#	return output
 
-@route('/mac/node<no>')
-def index(no):
-	location=nameMacZipped['node'+str(no)]
-	output = template('how I display a node', no=no,location=location) #convert to html table
-	return output
+#show mac address for selected node
+#@route('/mac/node<no>')
+#def index(no):
+#	location=nameMacZipped['node'+str(no)]
+#	output = template('how I display a node', no=no,location=location) #convert to html table
+#	return output
 	
 
 #Show nodes
-@route('/shownodes')	
-def shownodes():	
-	output = template('shownodes.tpl',nodeNames=nodeNames)
-	return output
+#@route('/shownodes')	
+#def shownodes():	
+#	output = template('shownodes.tpl',csvFull=csvFull)
+#	return output
 
+
+#Top page
 @route('/top')
 def top():	
 	output = template('top1.tpl',csvFull=csvFull)
 	return output
 
-
+#Routes to designated node's info
 @route('/node<no>')
 def index(no):
 	location = nameCSVZipped['node'+str(no)]
 	output = template('nodepage.tpl',no=no,location=location,nameCSVZipped=nameCSVZipped)
 	return output
-	
+
+#Shows rack location for all nodes	
 @route('/showrack')
 def showrack():
 	output = template('showrack.tpl',nameLocZipped=nameLocZipped)
 	return output	
 
+#Show mac address for all notes
 @route('/showmac')
 def showmac():
 	output = template('showmac.tpl',nameMacZipped=nameMacZipped)
 	return output	
-	
+
+#Downloads csv file
+@route('/download<filename:path>')
+def download(filename):
+	return static_file(filename, root ='/home/Lawrence/git/nodewebpages',download=filename)
 
 run(host='localhost') #Make sure this is last or else it won't load the pages after it
 

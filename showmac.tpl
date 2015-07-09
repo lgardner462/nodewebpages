@@ -8,4 +8,5 @@
 	%macstr2 = macstr2.strip(']')
 	%macstr2= macstr2.strip('u')
 	%macstr2 = macstr2.strip("'")
-	{{i}},{{macstr2}}<br>
+	<p><a href="http://localhost:8080/{{i}}">{{i}}</a>,{{macstr2}}</p>	
+	
